@@ -1,6 +1,6 @@
 ## Tigr: Transforming Irregular Graphs for GPU-Friendly Graph Processing
 
-Tigr is a lightweight CUDA graph processing framework for GPU platforms. 
+Tigr is a lightweight graph transformation and processing framework for GPU platforms. 
 
 In real-world graphs, the high irregularity of degree distribution acts
 as a major barrier to their efficient processing on GPU architectures.
