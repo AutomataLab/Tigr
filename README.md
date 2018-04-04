@@ -8,8 +8,18 @@ Tigr addresses the irregularity issue at its origin by transforming
 irregular graphs into more regular ones, meanwhile preserving the same
 results as running on the original graphs.
 
-The code is under final testing, and will be released soon.
+#### Compilation
 
+To compile Tigr, just run make in the root directory.
+
+#### Running applications in Tigr
+
+The applications take the input graph as input as well as some optional arguments. For example:
+
+```
+$ ./sssp --input path-to-input-graph
+$ ./sssp --input path-to-input-graph --source 10
+``` 
 
 #### Publications:
 
