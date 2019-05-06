@@ -1,4 +1,4 @@
-## Tigr: Transforming Irregular Graphs for GPU-Friendly Graph Processing
+## Tigr
 
 Tigr is a lightweight graph transformation and processing framework for GPU platforms. 
 
