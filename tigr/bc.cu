@@ -37,7 +37,6 @@ __global__ void kernel1(unsigned int numParts,
 			numParts = degree / Part_Size ;
 		else
 			numParts = degree / Part_Size + 1;
-
 		
 		unsigned int end;
 
@@ -55,7 +54,6 @@ __global__ void kernel1(unsigned int numParts,
 				*finished = false;
 			}
 			if(dist[edgeList[end]] == level + 1)
-				//sigma[edgeList[end]] = sigma[edgeList[end]] + sigma[id];
 				atomicAdd(&sigma[edgeList[end]] , sigma[id]);
 		}
 		
@@ -90,7 +88,6 @@ __global__ void kernel2(unsigned int numParts,
 			numParts = degree / Part_Size ;
 		else
 			numParts = degree / Part_Size + 1;
-
 		
 		unsigned int end;
 
@@ -201,8 +198,6 @@ int main(int argc, char** argv)
 												d_finished,
 												level);
 
-
-		//getLastCudaError("Kernel execution failed\n");	
 		gpuErrorcheck( cudaPeekAtLastError() );
 		gpuErrorcheck( cudaDeviceSynchronize() );
 		
@@ -227,7 +222,6 @@ int main(int argc, char** argv)
 												level);
 
 
-		//getLastCudaError("Kernel execution failed\n");
 		gpuErrorcheck( cudaPeekAtLastError() );
 		gpuErrorcheck( cudaDeviceSynchronize() );
 	}

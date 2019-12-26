@@ -42,8 +42,7 @@ __global__ void kernel(unsigned int numParts,
 			numParts = degree / Part_Size + 1;
 		
 		int end;
-		//int w8;
-		//int finalDist;
+
 		int ofs = thisPointer + part + 1;
 
 		for(int i=0; i<Part_Size; i++)
@@ -51,11 +50,9 @@ __global__ void kernel(unsigned int numParts,
 			if(part + i*numParts >= degree)
 				break;
 			end = ofs + i*numParts;
-			//w8 = end + 1;
-			// finalDist = sourceWeight + edgeList[w8];
+
 			if(sourceWeight < dist[edgeList[end]])
 			{
-				//dist[edgeList[end]] = finalDist
 				atomicMin(&dist[edgeList[end]] , sourceWeight);
 				*finished = false;
 				label2[edgeList[end]] = true;
@@ -166,7 +163,6 @@ int main(int argc, char** argv)
 			clearLabel<<< num_nodes/512 + 1 , 512 >>>(d_label2, num_nodes);																										
 		}
 
-		//getLastCudaError("Kernel execution failed\n");
 		gpuErrorcheck( cudaPeekAtLastError() );
 		gpuErrorcheck( cudaDeviceSynchronize() );	
 		
@@ -185,17 +181,6 @@ int main(int argc, char** argv)
 	gpuErrorcheck(cudaMemcpy(dist, d_dist, num_nodes*sizeof(unsigned int), cudaMemcpyDeviceToHost));
 
 	utilities::PrintResults(dist, 30);
-
-	//int components = 0;
-	//for(int i=0; i<num_nodes; i++)
-	//	if (dist[i] > 0)
-	//	{
-	//		cout << "More than one component\n";
-	//		cout << i << " " << dist[i] << endl;
-	//		break;
-	//	}
-
-	//cout << "Number of components = " << components << endl;
 	
 	if(arguments.hasOutput)
 		utilities::SaveResults(arguments.output, dist, num_nodes);

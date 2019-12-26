@@ -52,7 +52,6 @@ bool ArgumentParser::Parse()
 			
 		for(int i=1; i<argc-1; i=i+2)
 		{
-			//argv[i]
 			
 			if (strcmp(argv[i], "--input") == 0) {
 				input = string(argv[i+1]);

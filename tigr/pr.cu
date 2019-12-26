@@ -22,15 +22,11 @@ __global__ void kernel(unsigned int numParts,
 	{
 		int id = partNodePointer[partId].node;
 		int part = partNodePointer[partId].part;
-
-
-		// int sourceWeight = dist[id];
 		
 		int thisPointer = nodePointer[id];
 		int degree = edgeList[thisPointer];
 		
 		float sourcePR = (float) pr2[id] / degree;
-		
 			
 		int numParts;
 		if(degree % Part_Size == 0)
@@ -39,7 +35,6 @@ __global__ void kernel(unsigned int numParts,
 			numParts = degree / Part_Size + 1;
 		
 		int end;
-		// int w8;
 		int ofs = thisPointer + part + 1;
 
 		for(int i=0; i<Part_Size; i++)
@@ -47,7 +42,6 @@ __global__ void kernel(unsigned int numParts,
 			if(part + i*numParts >= degree)
 				break;
 			end = ofs + i*numParts;
-			// w8 = end + 1;
 
 			atomicAdd(&pr1[edgeList[end]], sourcePR);
 		}	
@@ -89,7 +83,6 @@ int main(int argc, char** argv)
 	pr2  = new float[num_nodes];
 	
 	float initPR = (float) 1 / num_nodes;
-	cout << initPR << endl;
 	
 	for(int i=0; i<num_nodes; i++)
 	{
@@ -120,7 +113,6 @@ int main(int argc, char** argv)
 	t.Start();
 
 	int itr = 0;
-	// make it fast
 	float base = (float)0.15/num_nodes;
 	do
 	{
@@ -169,11 +161,6 @@ int main(int argc, char** argv)
 	}
 
 		utilities::PrintResults(pr1, 30);
-		
-	//float sum = 0;
-	//for(int i=0; i<num_nodes; i++)
-	//	sum = sum + pr1[i];
-	//cout << sum << endl << endl;
 
 	if(arguments.hasOutput)
 		utilities::SaveResults(arguments.output, pr1, num_nodes);	
