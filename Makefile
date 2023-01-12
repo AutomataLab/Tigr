@@ -8,7 +8,7 @@ NFLAGS=-arch=sm_32
 SHARED=shared
 TIGR=tigr
 
-all: make1 make2 sssp bfs cc pr sswp
+all: make1 make2 sssp bfs cc pr sswp bc
 
 make1:
 	make -C $(SHARED)

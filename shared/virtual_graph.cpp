@@ -65,6 +65,7 @@ void VirtualGraph::MakeGraph()
 	}
 
 	outDegreeCounter  = new uint[graph->num_nodes];
+	memset(outDegreeCounter, 0, sizeof(uint) * graph->num_nodes);
 	
 	for(int i=0; i<graph->num_edges; i++)
 	{
@@ -133,6 +134,7 @@ void VirtualGraph::MakeUGraph()
 	}
 
 	outDegreeCounter  = new uint[graph->num_nodes];
+	memset(outDegreeCounter, 0, sizeof(uint) * graph->num_nodes);
 	
 	for(int i=0; i<graph->num_edges; i++)
 	{
